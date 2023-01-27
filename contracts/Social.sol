@@ -28,6 +28,29 @@ contract Social {
     }
 
     /*
+    Array Length
+    */
+    function getPostInfoArrayLen() public view returns (uint256) {
+        return postInfoArray.length;
+    }
+
+    function getHashTagPostInfoLen(string memory _hashTag)
+        public
+        view
+        returns (uint256)
+    {
+        return hashTagPostInfoMap[_hashTag].length;
+    }
+
+    function getUserPostInfoLen(string memory _name)
+        public
+        view
+        returns (uint256)
+    {
+        return userPostInfoMap[_name].length;
+    }
+
+    /*
     Account Management
     */
     function createAccount(
