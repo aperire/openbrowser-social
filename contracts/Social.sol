@@ -7,9 +7,9 @@ contract Social {
     mapping(address => UserAccount) public userAccountMap;
 
     // Posts
-    PostInfo[] public postInfoArray;
-    mapping(string => PostInfo[]) hashTagPostInfoMap;
-    mapping(string => PostInfo[]) userPostInfoMap;
+    string[] public postInfoArray;
+    mapping(string => string[]) hashTagPostInfoMap;
+    mapping(string => string[]) userPostInfoMap;
 
     struct UserAccount {
         string name;
@@ -18,14 +18,15 @@ contract Social {
         address owner;
     }
 
-    struct PostInfo {
-        string text;
-        string mediaHash;
-        string mediaFtype;
-        uint256 postedTimestamp;
-        string[] hashTagArray;
-        string name;
-    }
+    // Changed to PostInfoHash;
+    // struct PostInfo {
+    //     string text;
+    //     string mediaHash;
+    //     string mediaFtype;
+    //     uint256 postedTimestamp;
+    //     string[] hashTagArray;
+    //     string name;
+    // }
 
     /*
     Array Length
@@ -93,29 +94,19 @@ contract Social {
     Post Management
     */
     function createPost(
-        string memory _text,
-        string memory _mediaHash,
-        string memory _mediaFtype,
+        string memory postInfoHash,
         string[] memory _hashTagArray
     ) public {
         string memory name = userAccountMap[msg.sender].name;
         require(nameOwnerMap[name] == msg.sender, "Create Account");
 
-        PostInfo memory postInfo = PostInfo(
-            _text,
-            _mediaHash,
-            _mediaFtype,
-            block.timestamp,
-            _hashTagArray,
-            name
-        );
-        postInfoArray.push(postInfo);
+        postInfoArray.push(postInfoHash);
 
         for (uint256 i = 0; i < _hashTagArray.length; i++) {
             string memory hashTag = _hashTagArray[i];
-            hashTagPostInfoMap[hashTag].push(postInfo);
+            hashTagPostInfoMap[hashTag].push(postInfoHash);
         }
 
-        userPostInfoMap[name].push(postInfo);
+        userPostInfoMap[name].push(postInfoHash);
     }
 }

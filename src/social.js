@@ -43,18 +43,18 @@ class Social {
     }
 
     getPostInfoFromArray = async (index) => {
-        const postInfo = await this.contract.postInfoArray(index);
-        return postInfo;
+        const PostInfoHash = await this.contract.postInfoArray(index);
+        return PostInfoHash;
     }
 
     getPostInfoFromHashtag = async (hashTag, index) => {
-        const postInfo = await this.contract.hashTagPostInfoMap(hashTag, index);
-        return postInfo;
+        const PostInfoHash = await this.contract.hashTagPostInfoMap(hashTag, index);
+        return PostInfoHash;
     }
 
     getPostInfoFromName = async (name, index) => {
-        const postInfo = await this.contract.userPostInfoMap(name, index);
-        return postInfo
+        const PostInfoHash = await this.contract.userPostInfoMap(name, index);
+        return PostInfoHash
     }
 
 
@@ -86,9 +86,9 @@ class Social {
         return txHash;
     }
 
-    createPost = async (text, mediaHash, mediaFtype, hashTagArray) => {
+    createPost = async (text, postInfoHash, hashTagArray) => {
         const tx = await this.contract.createPost(
-            text, mediaHash, mediaFtype, hashTagArray
+            postInfoHash, hashTagArray
         );
         const txHash = await tx.hash;
         await tx.wait();
