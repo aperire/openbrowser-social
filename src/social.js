@@ -86,9 +86,9 @@ class Social {
         return txHash;
     }
 
-    createPost = async (text, postInfoHash, hashTagArray) => {
+    createPost = async (text, mediaHash, mediaSource, hashTagArray) => {
         const tx = await this.contract.createPost(
-            postInfoHash, hashTagArray
+            text, mediaHash, mediaSource, hashTagArray
         );
         const txHash = await tx.hash;
         await tx.wait();

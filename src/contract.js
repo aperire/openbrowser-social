@@ -1,5 +1,5 @@
 const contract = {
-    "address": "0x24D7aADbb2bF0B533ebcA7Ee95330EF7e6bAF41b",
+    "address": "0x0Bd755798Df7224823F3fa0f45425a3f8Dd509C0",
     "abi": [
         {
             "inputs": [
@@ -38,7 +38,7 @@ const contract = {
                 },
                 {
                     "internalType": "string",
-                    "name": "_mediaFtype",
+                    "name": "_mediaSource",
                     "type": "string"
                 },
                 {
@@ -175,7 +175,7 @@ const contract = {
                 },
                 {
                     "internalType": "string",
-                    "name": "mediaFtype",
+                    "name": "mediaSource",
                     "type": "string"
                 },
                 {

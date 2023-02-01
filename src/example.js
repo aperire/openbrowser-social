@@ -5,8 +5,6 @@ const PRIVATE_KEY = "0xd634ba22f6e979735b7f300eeaf89025f446fa9b7c5c3d08d578e659b
 const MATIC_PROVIDER = "https://rpc-mumbai.maticvigil.com";
 
 const signer = getSigner(PRIVATE_KEY, MATIC_PROVIDER);
-const address = signer.address;
-
 
 // Initialize Social
 const social = new Social(signer);
@@ -17,5 +15,15 @@ const createAccountTx = async (name, pfpHash, bio) => {
     console.log(txHash);
 }
 
-createAccountTx("yujin", "this", "hello");
+// Create Post
+const createPost = async (text, mediaHash, mediaSource, hashTagArray) => {
+    let txHash = await social.createPost(text, mediaHash, mediaSource, hashTagArray);
+    console.log(txHash);
+}
+
+
+// createAccountTx("yujin", "this", "hello");
+createPost(
+    "This is Yujin!", "https://kpopping.com/documents/06/3/800/IVE-Yujin-x-CLIO-2023-documents-1.jpeg?v=6c309", "uri", ["yujin", "kpop"]
+);
 

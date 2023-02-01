@@ -7,9 +7,9 @@ contract Social {
     mapping(address => UserAccount) public userAccountMap;
 
     // Posts
-    string[] public postInfoArray;
-    mapping(string => string[]) hashTagPostInfoMap;
-    mapping(string => string[]) userPostInfoMap;
+    PostInfo[] public postInfoArray;
+    mapping(string => PostInfo[]) hashTagPostInfoMap;
+    mapping(string => PostInfo[]) userPostInfoMap;
 
     struct UserAccount {
         string name;
@@ -18,15 +18,14 @@ contract Social {
         address owner;
     }
 
-    // Changed to PostInfoHash;
-    // struct PostInfo {
-    //     string text;
-    //     string mediaHash;
-    //     string mediaFtype;
-    //     uint256 postedTimestamp;
-    //     string[] hashTagArray;
-    //     string name;
-    // }
+    struct PostInfo {
+        string text;
+        string mediaHash;
+        string mediaSource;
+        uint256 postedTimestamp;
+        string[] hashTagArray;
+        string name;
+    }
 
     /*
     Array Length
@@ -94,19 +93,23 @@ contract Social {
     Post Management
     */
     function createPost(
-        string memory postInfoHash,
+        string memory _text,
+        string memory _mediaHash,
+        string memory _mediaSource,
         string[] memory _hashTagArray
     ) public {
         string memory name = userAccountMap[msg.sender].name;
         require(nameOwnerMap[name] == msg.sender, "Create Account");
-
-        postInfoArray.push(postInfoHash);
+        PostInfo memory postInfo = PostInfo(
+            _text, _mediaHash, _mediaSource, block.timestamp, _hashTagArray, name
+        );
+        postInfoArray.push(postInfo);
 
         for (uint256 i = 0; i < _hashTagArray.length; i++) {
             string memory hashTag = _hashTagArray[i];
-            hashTagPostInfoMap[hashTag].push(postInfoHash);
+            hashTagPostInfoMap[hashTag].push(postInfo);
         }
 
-        userPostInfoMap[name].push(postInfoHash);
+        userPostInfoMap[name].push(postInfo);
     }
 }
