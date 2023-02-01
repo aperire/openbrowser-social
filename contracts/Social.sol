@@ -8,8 +8,8 @@ contract Social {
 
     // Posts
     PostInfo[] public postInfoArray;
-    mapping(string => PostInfo[]) hashTagPostInfoMap;
-    mapping(string => PostInfo[]) userPostInfoMap;
+    mapping(string => PostInfo[]) public hashTagPostInfoMap;
+    mapping(string => PostInfo[]) public userPostInfoMap;
 
     struct UserAccount {
         string name;
@@ -21,7 +21,7 @@ contract Social {
     struct PostInfo {
         string text;
         string mediaHash;
-        string mediaSource;
+        string mediaFtype;
         uint256 postedTimestamp;
         string[] hashTagArray;
         string name;
@@ -95,13 +95,19 @@ contract Social {
     function createPost(
         string memory _text,
         string memory _mediaHash,
-        string memory _mediaSource,
+        string memory _mediaFtype,
         string[] memory _hashTagArray
     ) public {
         string memory name = userAccountMap[msg.sender].name;
         require(nameOwnerMap[name] == msg.sender, "Create Account");
+
         PostInfo memory postInfo = PostInfo(
-            _text, _mediaHash, _mediaSource, block.timestamp, _hashTagArray, name
+            _text,
+            _mediaHash,
+            _mediaFtype,
+            block.timestamp,
+            _hashTagArray,
+            name
         );
         postInfoArray.push(postInfo);
 

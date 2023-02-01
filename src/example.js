@@ -21,9 +21,22 @@ const createPost = async (text, mediaHash, mediaSource, hashTagArray) => {
     console.log(txHash);
 }
 
+// Display Post with Account Name
+const getAccountPosts = async (name) => {
+    const postLength = await social.getUserPostInfoLen(name);
+
+    let postArray = []
+    for (let i = 0; i < postLength; i++) {
+        let post = await social.getPostInfoFromName(name, i);
+        postArray.push(post);
+    }
+    console.log(postArray);
+}
+
 
 // createAccountTx("yujin", "this", "hello");
-createPost(
-    "This is Yujin!", "https://kpopping.com/documents/06/3/800/IVE-Yujin-x-CLIO-2023-documents-1.jpeg?v=6c309", "uri", ["yujin", "kpop"]
-);
+// createPost(
+//     "This is Yujin!", "https://kpopping.com/documents/06/3/800/IVE-Yujin-x-CLIO-2023-documents-1.jpeg?v=6c309", "uri", ["yujin", "kpop"]
+// );
 
+getAccountPosts("yujin");

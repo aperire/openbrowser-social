@@ -27,7 +27,7 @@ class Social {
     }
 
     getUserPostInfoLen = async (name) => {
-        const userPostInfoLen = await this.contract.getUserPostInfoLen(hashTag);
+        const userPostInfoLen = await this.contract.getUserPostInfoLen(name);
         return userPostInfoLen;
     }
 

@@ -1,5 +1,5 @@
 const contract = {
-    "address": "0x0Bd755798Df7224823F3fa0f45425a3f8Dd509C0",
+    "address": "0xBF77A91967D8EE711738684a147e6bB746AbeB67",
     "abi": [
         {
             "inputs": [
@@ -38,7 +38,7 @@ const contract = {
                 },
                 {
                     "internalType": "string",
-                    "name": "_mediaSource",
+                    "name": "_mediaFtype",
                     "type": "string"
                 },
                 {
@@ -140,6 +140,50 @@ const contract = {
                     "internalType": "string",
                     "name": "",
                     "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "hashTagPostInfoMap",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "mediaHash",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "mediaFtype",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "postedTimestamp",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
                 }
             ],
             "name": "nameOwnerMap",
@@ -175,7 +219,7 @@ const contract = {
                 },
                 {
                     "internalType": "string",
-                    "name": "mediaSource",
+                    "name": "mediaFtype",
                     "type": "string"
                 },
                 {
@@ -221,6 +265,50 @@ const contract = {
                     "internalType": "address",
                     "name": "owner",
                     "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "userPostInfoMap",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "mediaHash",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "mediaFtype",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "postedTimestamp",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
                 }
             ],
             "stateMutability": "view",
