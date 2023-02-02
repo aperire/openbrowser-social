@@ -57,10 +57,8 @@ const createPosts = async (socialObj, address, numPostsPerAccount) => {
                 randomstring.generate(5),
             ]   
         );
-        txGasLog.push(delta);
-        console.log(`TX${i}: ${address}. Gas Used = ${delta}`);
+        console.log(`TX${i}: ${address}`);
     }
-    return txGasLog;
 }
 
 const runTest = async(testAccounts, numPostsPerAccount) => {
@@ -69,8 +67,8 @@ const runTest = async(testAccounts, numPostsPerAccount) => {
     let addressArray = getAddressArray(testAccounts);
 
     // 2. Create Accounts
-    let createAccountTx = await createAccounts(socialObjArray);
-    console.log("Accounts Created");
+    // let createAccountTx = await createAccounts(socialObjArray);
+    // console.log("Accounts Created");
 
     let txGasLogGlobal = [];
     // 3. Create Posts
@@ -79,5 +77,5 @@ const runTest = async(testAccounts, numPostsPerAccount) => {
     }
 }
 
-runTest(testAccounts, 100);
+runTest(testAccounts, 1000);
 
