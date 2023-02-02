@@ -7,7 +7,9 @@ const getSigner = (PRIVATE_KEY, MATIC_PROVIDER) => {
     return signer;
 }
 
+
 class Social {
+
     constructor(signer) {
         this.contract = new ethers.Contract(
             contract.address,
@@ -15,6 +17,7 @@ class Social {
             signer
         );
     }
+
     // Assist
     getPostInfoArrayLen = async () => {
         const postInfoArrayLen = await this.contract.getPostInfoArrayLen();
